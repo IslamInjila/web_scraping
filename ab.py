@@ -27,17 +27,12 @@ uClient.close()
 
 #for parsing data we are using beautiful soup
 soup = BeautifulSoup(page_html, 'html.parser')
-# print(soup.prettify(), 'SOUP')
-# print(soup.body)
 
 
 rows = soup.body.find_all("div", class_="WsMG1c nnK0zc")
-# print(rows, 'rows')
-# f = csv.writer(open('googleApp_data.csv', 'w'))
-# f.writerow(['APP_LIST', 'RATINGS'])
+
 datalist = []
-# with open("googleApp_data.csv", "w") as csv_file:
-#     writer = csv.writer(csv_file)
+
 
 for row in rows:
     data = row.get_text()  # Print all occurrences
@@ -47,15 +42,13 @@ for row in rows:
     }
     datalist.append(datalisting)
 df = pd.DataFrame(datalist)
-# print(df.head(10), 'df')   
+  
 
 
 secondlist= []
-# csv_file.close()
+
 ratings = driver.find_elements_by_xpath('//div[@role="img"]')
-# f = csv.writer(open('googleApp_data.csv', 'a+'))
-# with open("googleApp_data.csv", "a") as csv_file:
-#     writer = csv.writer(csv_file)
+
 for rating in ratings:
     ratings_value = rating.get_attribute("aria-label")
    
@@ -71,24 +64,7 @@ result = pd.concat([df, ds], axis=1, join='inner')
 # data_frame['ds'] = pd.Series(, index=data_frame.index) 
 # print(result.head(40), 'data_frame')
 result.to_excel('googleapp.xls', index= False)
-      # print(ratings_value, 'ratings_value')
-      # writer.writerow([ratings_value])
-      # f.writerow([ratings_value])
-# csv_file.close()
-
-
-
-# find_href = browser.find_elements_by_xpath('//your_xpath')
-# for my_href in find_href:
-#     print(my_href.get_attribute("href"))
-
-
-# column = soup.body.find_all("div", class_="pf5lIe")
-
-# for columns in column:
-
-#     columnsdata = columns.get_text()  
-#     print(columnsdata, 'columnsdata')
+  
 
 
 
@@ -100,24 +76,6 @@ result.to_excel('googleapp.xls', index= False)
 
 
 
-
-# # ratings = soup.body.find_all(aria-label')
-# ratings = soup.body.get_attribute('aria-label')
-# print(ratings, 'rate')
-
-# ratings = soup.body.find_all(rows="img")
-# for i in rows:
-#     # print(i)
-#     rating = soup.body.find('div', class_="vQHuPe bUWb7c")
-#     print(r, 'rating')
-
-# product = soup.find_all('div',{'class','product-item'})
-# # print(product)
-
-# for i in product:
-#     # print(i)
-#     rating = i.find('span', class_="rating-content")
-#     print(rating)
 
 
 
